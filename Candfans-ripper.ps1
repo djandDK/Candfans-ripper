@@ -73,7 +73,7 @@ function download-candfans {
                     }
 
                     # Create a directory for the Image set
-                    $postPath = "$($textsPath)\$($date) - $($post.post.post_id) - " + ($($post.post.title).replace("`n"," ").replace("`r"," ").Trim() -replace '[\\/:*?"<>|]', '_')
+                    $postPath = "$($textsPath)\$($date) - $($post.post.post_id) - " + ($($post.post.title).replace("`n"," ").replace("`r"," ").Trim() -replace '[\[\]\\/:*?"<>|]', '_')
                     if (!(Test-Path $postPath -PathType Container)) {
                         New-Item -ItemType Directory -Path $postPath | Out-Null
                     }
@@ -88,7 +88,7 @@ function download-candfans {
                     }
 
                     # Create a directory for the Image set
-                    $postPath = "$($imagesPath)\$($date) - $($post.post.post_id) - " + ($($post.post.title).replace("`n"," ").replace("`r"," ").Trim() -replace '[\\/:*?"<>|]', '_')
+                    $postPath = "$($imagesPath)\$($date) - $($post.post.post_id) - " + ($($post.post.title).replace("`n"," ").replace("`r"," ").Trim() -replace '[\[\]\\/:*?"<>|]', '_')
                     if (!(Test-Path $postPath -PathType Container)) {
                         New-Item -ItemType Directory -Path $postPath | Out-Null
                     }
@@ -113,7 +113,7 @@ function download-candfans {
                     }
 
                     # Create a directory for the Video
-                    $postPath = "$($videosPath)\$($date) - $($post.post.post_id) - " + ($($post.post.title).replace("`n"," ").replace("`r"," ").Trim() -replace '[\\/:*?"<>|]', '_')
+                    $postPath = "$($videosPath)\$($date) - $($post.post.post_id) - " + ($($post.post.title).replace("`n"," ").replace("`r"," ").Trim() -replace '[\[\]\\/:*?"<>|]', '_')
                     if (!(Test-Path $postPath -PathType Container)) {
                         New-Item -ItemType Directory -Path $postPath | Out-Null
 
@@ -136,7 +136,7 @@ function download-candfans {
                     }
 
                     # Create a directory for the Audio clip
-                    $postPath = "$($audioPath)\$($date) - $($post.post.post_id) - " + ($($post.post.title).replace("`n"," ").replace("`r"," ").Trim() -replace '[\\/:*?"<>|]', '_')
+                    $postPath = "$($audioPath)\$($date) - $($post.post.post_id) - " + ($($post.post.title).replace("`n"," ").replace("`r"," ").Trim() -replace '[\[\]\\/:*?"<>|]', '_')
                     if (!(Test-Path $postPath -PathType Container)) {
                         New-Item -ItemType Directory -Path $postPath | Out-Null
                     }
