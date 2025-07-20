@@ -11,6 +11,6 @@ The script isn't very dynamic, requires a candfans subscription to the creator a
 download-candfans -path "C:\candfans" -user "hioRIN" -gallerydlPath "C:\Program Files\gallerydl\gallery-dl.exe" -ytdlpPath "C:\Program Files\ytdlp\yt-dlp.exe"
 ```
 
-The user parameter is based on the profile url on candfans: https://candfans.jp/**hioRIN**.
+The user parameter is based on the profile url on candfans: https://candfans.jp/hioRIN.
 
 The path parameter is the destination folder.
