@@ -55,12 +55,16 @@ function download-candfans {
         $posts = ((Invoke-WebRequest "https://candfans.jp/api/contents/get-timeline?user_id=$($profile.user.id)&sort_order=old&post_type[]=1&record=25&page=$($i)").Content | ConvertFrom-Json).data
         $posts | ForEach-Object {
             $p++
-            write-host "Currently working on post $($p)/$($contentCount.content_length)"
+            write-host "Currently working on post $($p)/$($contentCount.content_length) - "
             
             # Get more detailed information about the current post
             $post = ((Invoke-WebRequest "https://candfans.jp/api/contents/get-timeline/$($_.post_id)").Content | ConvertFrom-Json).data
 
             $date = $post.post.post_date -replace ":","."
+
+            $folderTitle = "$($date) - $($post.post.post_id) - " + ($($post.post.title).replace("`n"," ").replace("`r"," ").Trim() -replace '[\[\]\\/:*?"<>|]', '_')
+
+            write-host "$($folderTitle)"
 
             switch ($post.post.contents_type) {
                 0 {
@@ -73,7 +77,7 @@ function download-candfans {
                     }
 
                     # Create a directory for the Image set
-                    $postPath = "$($textsPath)\$($date) - $($post.post.post_id) - " + ($($post.post.title).replace("`n"," ").replace("`r"," ").Trim() -replace '[\[\]\\/:*?"<>|]', '_')
+                    $postPath = "$($textsPath)\$($folderTitle)"
                     if (!(Test-Path $postPath -PathType Container)) {
                         New-Item -ItemType Directory -Path $postPath | Out-Null
                     }
@@ -88,7 +92,7 @@ function download-candfans {
                     }
 
                     # Create a directory for the Image set
-                    $postPath = "$($imagesPath)\$($date) - $($post.post.post_id) - " + ($($post.post.title).replace("`n"," ").replace("`r"," ").Trim() -replace '[\[\]\\/:*?"<>|]', '_')
+                    $postPath = "$($imagesPath)\$($folderTitle)"
                     if (!(Test-Path $postPath -PathType Container)) {
                         New-Item -ItemType Directory -Path $postPath | Out-Null
                     }
@@ -113,7 +117,7 @@ function download-candfans {
                     }
 
                     # Create a directory for the Video
-                    $postPath = "$($videosPath)\$($date) - $($post.post.post_id) - " + ($($post.post.title).replace("`n"," ").replace("`r"," ").Trim() -replace '[\[\]\\/:*?"<>|]', '_')
+                    $postPath = "$($videosPath)\$($folderTitle)"
                     if (!(Test-Path $postPath -PathType Container)) {
                         New-Item -ItemType Directory -Path $postPath | Out-Null
 
@@ -136,7 +140,7 @@ function download-candfans {
                     }
 
                     # Create a directory for the Audio clip
-                    $postPath = "$($audioPath)\$($date) - $($post.post.post_id) - " + ($($post.post.title).replace("`n"," ").replace("`r"," ").Trim() -replace '[\[\]\\/:*?"<>|]', '_')
+                    $postPath = "$($audioPath)\$($folderTitle)"
                     if (!(Test-Path $postPath -PathType Container)) {
                         New-Item -ItemType Directory -Path $postPath | Out-Null
                     }
