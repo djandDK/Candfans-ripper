@@ -55,7 +55,7 @@ function download-candfans {
         $posts = ((Invoke-WebRequest "https://candfans.jp/api/contents/get-timeline?user_id=$($profile.user.id)&sort_order=old&post_type[]=1&record=25&page=$($i)").Content | ConvertFrom-Json).data
         $posts | ForEach-Object {
             $p++
-            write-host "Currently working on post $($p)/$($contentCount.content_length) - "
+            write-host "Currently working on post $($p)/$($contentCount.content_length)"
             
             # Get more detailed information about the current post
             $post = ((Invoke-WebRequest "https://candfans.jp/api/contents/get-timeline/$($_.post_id)").Content | ConvertFrom-Json).data
